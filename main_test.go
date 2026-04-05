@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
@@ -43,7 +43,7 @@ func TestVerificaStatusCodeDaSaudacaoComParametro(t *testing.T) {
 	r.ServeHTTP(resposta, req)
 	assert.Equal(t, http.StatusOK, resposta.Code, "Deveriam ser iguais")
 	mockDaResposta := `{"API diz":"E aí, gui. Tudo beleza?"}`
-	respostaBody, _ := ioutil.ReadAll(resposta.Body)
+	respostaBody, _ := io.ReadAll(resposta.Body)
 	assert.Equal(t, mockDaResposta, string(respostaBody))
 }
 

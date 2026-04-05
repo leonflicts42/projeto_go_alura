@@ -1,20 +1,43 @@
 services:
   postgres:
-    image: "postgres"
+    image: "postgres:15"
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=root
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - 5432:5432
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - .:/app
+    networks:
+      - minha-rede
 
   app:
     build:
       context: .
-      target: production
+      #target: build
+    command: go run main.go
+    volumes:
+      - .:/app
     ports:
       - 8080:8080
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=root
+      - DB_PORT=5432
+    networks:
+      - minha-rede
+  
+networks:
+  minha-rede:

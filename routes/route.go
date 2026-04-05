@@ -9,7 +9,7 @@ func HandleRequest() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 	r.Static("/assets", "./assets")
-	r.GET("/:nome", controllers.Saudacoes)
+	r.GET("/saudacao/:nome", controllers.Saudacoes) // Garanta que o prefixo existe
 	r.GET("/alunos", controllers.TodosAlunos)
 	r.GET("/alunos/:id", controllers.BuscarAlunoPorID)
 	r.POST("/alunos", controllers.CriarNovoAluno)

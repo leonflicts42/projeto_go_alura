@@ -2,6 +2,9 @@ FROM golang:1.22-alpine AS build
 
 WORKDIR /app
 
+COPY . .
+RUN go mod download
+RUN go build -o main main.go
 COPY ./controllers/ /app/controllers/
 COPY ./database/ /app/database/
 COPY ./models/ /app/models/
