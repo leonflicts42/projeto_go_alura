@@ -27,7 +27,7 @@ jobs:
     - name: Lint
       uses: golangci/golangci-lint-action@v9
       with:
-        version: 1.59.0
+        version: latest
         args: controllers/ database/ models/ routes/
 
     - name: Test
