@@ -31,7 +31,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - DB_HOST=postgres
+      - DB_HOST=localhost
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=root
