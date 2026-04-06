@@ -22,12 +22,11 @@ jobs:
         go-version: '1.22'
 
     - name: Inicia banco
-      run: docker compose up -d postgres
 
     - name: Lint
       uses: golangci/golangci-lint-action@v9
       with:
-        version: v1.59
+        version: v2.11
         args: controllers/ database/ models/ routes/
 
     - name: Test
