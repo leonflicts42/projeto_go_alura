@@ -4,7 +4,7 @@ body {
   background-color: #aeb6bf;
 }
   
-h1 {
+h1, h3 {
   font-family: 'Alfa Slab One', cursive;
   margin: 0 auto;
   margin-top: 6%;
